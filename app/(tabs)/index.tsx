@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
     color: '#999',
   },
   header: {
-    backgroundColor: '#FF6161',
+    backgroundColor: '#FF5852',
     paddingHorizontal: 20,
     paddingTop: 16,
     paddingBottom: 20,
@@ -273,13 +273,10 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   headerIcon: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    width: 64,
+    height: 64,
     alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'hidden',
   },
   mascotImg: {
     width: '100%',
