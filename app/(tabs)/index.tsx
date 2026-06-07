@@ -9,13 +9,14 @@ import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   FlatList,
+  Image,
   SafeAreaView,
   SectionList,
   StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 
 export default function HomeScreen() {
@@ -153,7 +154,11 @@ export default function HomeScreen() {
           <Text style={styles.headerTitle}>LepakLapar</Text>
         </View>
         <View style={styles.headerIcon}>
-          <Text style={styles.headerEmoji}>🔔</Text>
+          <Image 
+            source={require('@/assets/images/mascot.png')} 
+            style={styles.mascotImg}
+            resizeMode="cover"
+          />
         </View>
       </View>
 
@@ -228,7 +233,7 @@ const EmptyState = () => (
 // ── Styles ───────────────────────────────────────────────────────
 const styles = StyleSheet.create({
   safe: {
-    flex: 1,
+    flex: 100,
     backgroundColor: '#FFF8F5',
   },
   loadingContainer: {
@@ -274,6 +279,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.2)',
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  mascotImg: {
+    width: '100%',
+    height: '100%',
   },
   headerEmoji: {
     fontSize: 20,
@@ -307,7 +317,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 16,
-    marginTop: 20,
     marginBottom: 10,
   },
   sectionTitle: {

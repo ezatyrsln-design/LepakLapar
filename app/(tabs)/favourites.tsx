@@ -146,17 +146,6 @@ export default function FavouritesScreen() {
         </View>
       )}
 
-      {/* Add Demo Button */}
-      <TouchableOpacity
-        style={styles.addBtn}
-        onPress={handleAddDemo}
-        disabled={isPosting}
-      >
-        <Text style={styles.addBtnText}>
-          ➕ Add Food & POST to API
-        </Text>
-      </TouchableOpacity>
-
       {/* Empty State */}
       {favourites.length === 0 ? (
         <View style={styles.empty}>
