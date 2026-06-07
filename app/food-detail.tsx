@@ -1,18 +1,19 @@
 // app/food-detail.tsx — Food Detail Screen
 import { CATEGORY_COLORS, FoodItem } from '@/app/data';
-import { postFavourite } from '@/app/services';
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useState } from 'react';
+import { postFavourite, getMyFavourites, removeFavouriteFromDB } from '@/app/services';
+import { useLocalSearchParams, useRouter, useFocusEffect } from 'expo-router';
+import React, { useState, useCallback } from 'react';
 import {
   ActivityIndicator,
   Alert,
   Image,
   SafeAreaView,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
 
 export default function FoodDetailScreen() {
@@ -26,6 +27,24 @@ export default function FoodDetailScreen() {
 
   const catColor = CATEGORY_COLORS[item.category] || '#FF6161';
 
+  // ── VERIFY STATUS — Check the DB every time the page opens ─────────
+  useFocusEffect(
+    useCallback(() => {
+      const verifyFavouriteStatus = async () => {
+        // Fetch the current list of favorites from our fake DB
+        const currentFavs: any = await getMyFavourites();
+        
+        // Check if THIS specific food item's ID is inside that list
+        const isActuallySaved = currentFavs.some((fav: any) => fav.id === item.id);
+        
+        // Force the heart to turn red if it's found!
+        setIsFavourite(isActuallySaved);
+      };
+
+      verifyFavouriteStatus();
+    }, [item.id])
+  );
+
   // ── POST — Save to API when adding favourite ─────────────────
   const handleFavourite = async () => {
     if (isFavourite) {
@@ -38,7 +57,10 @@ export default function FoodDetailScreen() {
           {
             text: 'Remove',
             style: 'destructive',
-            onPress: () => setIsFavourite(false),
+            onPress: () => {
+              setIsFavourite(false);
+              removeFavouriteFromDB(item.id);
+            },
           },
         ]
       );
@@ -77,7 +99,7 @@ export default function FoodDetailScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      {/* <StatusBar backgroundColor="#FF6161" barStyle="light-content" /> */}
+      <StatusBar backgroundColor="#FF6161" barStyle="light-content" />
       <ScrollView showsVerticalScrollIndicator={false}>
 
         {/* Food Image */}
@@ -211,7 +233,7 @@ export default function FoodDetailScreen() {
 
 const styles = StyleSheet.create({
   safe: {
-    flex: 100,
+    flex: 1,
     backgroundColor: '#FFF8F5',
   },
   imageWrap: {

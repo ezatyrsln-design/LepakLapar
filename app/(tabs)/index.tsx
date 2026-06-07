@@ -144,17 +144,20 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar backgroundColor="#FF6161" barStyle="light-content" />
-
+      <StatusBar backgroundColor="#FF6161" barStyle="dark-content" />
+      
       {/* Header */}
       <View style={styles.header}>
         <View>
           <Text style={styles.greeting}>Welcome back! 👋</Text>
           <Text style={styles.headerTitle}>LepakLapar</Text>
         </View>
+        <View style={styles.headerIcon}>
+          <Text style={styles.headerEmoji}>🔔</Text>
+        </View>
       </View>
 
-      {/* Search Bar — navigates to search tab */}
+      {/* Search Bar — navigates to search tab 
       <TouchableOpacity
         style={styles.searchBar}
         onPress={() => router.push('/(tabs)/search')}
@@ -162,7 +165,7 @@ export default function HomeScreen() {
       >
         <Text style={styles.searchIcon}>🔍</Text>
         <Text style={styles.searchPlaceholder}>Search for food...</Text>
-      </TouchableOpacity>
+      </TouchableOpacity>*/}
 
       {/* SectionList mode */}
       {viewMode === 'section' ? (
@@ -335,6 +338,7 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingBottom: 20,
+    paddingTop: 20,
   },
   empty: {
     alignItems: 'center',

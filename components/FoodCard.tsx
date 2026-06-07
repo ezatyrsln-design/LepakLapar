@@ -34,10 +34,10 @@ const FoodCard: React.FC<Props> = ({ item, isFavourite, onPress, onToggleFavouri
           </View>
         )}
 
-        {/* Heart Button */}
+        {/* Heart Button 
         <TouchableOpacity style={styles.heartBtn} onPress={onToggleFavourite}>
           <Text style={styles.heart}>{isFavourite ? '❤️' : '🤍'}</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>*/}
 
         {/* Dynamic Category Badge on Image */}
         <View style={[styles.catBadge, { backgroundColor: catColor }]}>

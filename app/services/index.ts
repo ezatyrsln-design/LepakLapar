@@ -48,6 +48,24 @@ export const fetchMalaysianFood = async () => {
 };
 
 // ─────────────────────────────────────────────
+// ✨ LEPAK LAPAR FAKE DATABASE ✨
+// This array will hold your favorites while the app is running!
+// ─────────────────────────────────────────────
+let myFavouritesDB: any[] = [];
+
+// ─────────────────────────────────────────────
+// GET METHOD — Retrieve ONLY your saved favorites
+// ─────────────────────────────────────────────
+export const getMyFavourites = async () => {
+  // Simulate a quick 0.5s API loading delay so the UI looks real
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve([...myFavouritesDB]); 
+    }, 500);
+  });
+};
+
+// ─────────────────────────────────────────────
 // POST METHOD — Save favourite food to API
 // ─────────────────────────────────────────────
 export const postFavourite = async (food: any) => {
@@ -70,7 +88,14 @@ export const postFavourite = async (food: any) => {
     });
 
     const result = await response.json();
-    console.log('POST Success:', result);
+
+    // ✨ THE FIX: Save it to our fake database if it isn't already there! ✨
+    const alreadySaved = myFavouritesDB.find((item) => item.id === food.id);
+    if (!alreadySaved) {
+      myFavouritesDB.push(food);
+    }
+
+    console.log('POST Success & Saved Locally:', result);
     return result;
   } catch (error) {
     console.log('POST Error:', error);
@@ -89,6 +114,10 @@ const mapCategory = (name: string): string => {
   if (n.includes('teh') || n.includes('kopi') || n.includes('drink'))   return 'Drinks';
   if (n.includes('goreng') || n.includes('snack')) return 'Snacks';
   return 'Others';
+};
+
+export const removeFavouriteFromDB = (id: string) => {
+  myFavouritesDB = myFavouritesDB.filter((item) => item.id !== id);
 };
 
 const randomPrice = (): number => {

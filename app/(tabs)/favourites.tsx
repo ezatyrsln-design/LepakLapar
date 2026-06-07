@@ -1,7 +1,8 @@
 // app/(tabs)/favourites.tsx — Favourites Screen
 import { FoodItem, fallbackFoods } from '@/app/data';
-import { postFavourite } from '@/app/services';
-import React, { useEffect, useState } from 'react';
+import { getMyFavourites, postFavourite, removeFavouriteFromDB } from '@/app/services';
+import { useFocusEffect } from 'expo-router';
+import React, { useCallback, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -21,11 +22,22 @@ export default function FavouritesScreen() {
   const [isPosting, setIsPosting] = useState(false);
   const [lastPosted, setLastPosted] = useState<string | null>(null);
 
-  // ── Simulate some pre-saved favourites on load ───────────────
-  useEffect(() => {
-    // Pre-load 2 favourites as demo
-    setFavourites(fallbackFoods.slice(0, 2));
-  }, []);
+// ── GET METHOD — Sync data every time the screen is focused ───────────────
+  useFocusEffect(
+    useCallback(() => {
+      const fetchFavourites = async () => {
+        try {
+          // ✨ Call your new custom database fetcher! ✨
+          const result: any = await getMyFavourites();
+          setFavourites(result);
+        } catch (error) {
+          console.error("Failed to sync favourites", error);
+        }
+      };
+
+      fetchFavourites();
+    }, [])
+  );
 
   // ── POST METHOD — Save new favourite to API ──────────────────
   const handlePostFavourite = async (item: FoodItem) => {
@@ -61,8 +73,12 @@ export default function FavouritesScreen() {
         {
           text: 'Remove',
           style: 'destructive',
-          onPress: () =>
-            setFavourites((prev) => prev.filter((f) => f.id !== item.id)),
+          onPress: () => {
+            // Remove from screen immediately
+            setFavourites((prev) => prev.filter((f) => f.id !== item.id));
+            // ✨ Remove from our fake database so it doesn't come back! ✨
+            removeFavouriteFromDB(item.id); 
+          }
         },
       ]
     );
@@ -147,7 +163,7 @@ export default function FavouritesScreen() {
           <Text style={styles.emptyEmoji}>💔</Text>
           <Text style={styles.emptyTitle}>No Favourites Yet</Text>
           <Text style={styles.emptySub}>
-            Tap "Add Food & POST to API" to add and send to API!
+            Go back and add items to see them here!
           </Text>
         </View>
       ) : (
@@ -158,7 +174,7 @@ export default function FavouritesScreen() {
           contentContainerStyle={styles.list}
           ListHeaderComponent={
             <Text style={styles.count}>
-              {favourites.length} item(s) • Tap ➕ to POST new item to API
+              {favourites.length} item(s) saved
             </Text>
           }
           renderItem={({ item }) => (
@@ -185,15 +201,6 @@ export default function FavouritesScreen() {
 
               {/* Action Buttons */}
               <View style={styles.actions}>
-                {/* POST button */}
-                <TouchableOpacity
-                  style={styles.postBtn}
-                  onPress={() => handlePostFavourite(item)}
-                  disabled={isPosting}
-                >
-                  <Text style={styles.postBtnText}>📤</Text>
-                </TouchableOpacity>
-
                 {/* Remove button */}
                 <TouchableOpacity
                   style={styles.removeBtn}
