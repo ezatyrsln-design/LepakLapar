@@ -1,8 +1,8 @@
 // app/food-detail.tsx — Food Detail Screen
 import { CATEGORY_COLORS, FoodItem } from '@/app/data';
-import { postFavourite, getMyFavourites, removeFavouriteFromDB } from '@/app/services';
-import { useLocalSearchParams, useRouter, useFocusEffect } from 'expo-router';
-import React, { useState, useCallback } from 'react';
+import { getMyFavourites, postFavourite, removeFavouriteFromDB } from '@/app/services';
+import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
+import React, { useCallback, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -180,14 +180,6 @@ export default function FoodDetailScreen() {
             <View>
               <Text style={styles.infoLabel}>Price</Text>
               <Text style={styles.infoValue}>RM {item.price.toFixed(2)}</Text>
-            </View>
-          </View>
-
-          <View style={styles.infoRow}>
-            <Text style={styles.infoIcon}>🌐</Text>
-            <View>
-              <Text style={styles.infoLabel}>Data Source</Text>
-              <Text style={styles.infoValue}>TheMealDB API (GET)</Text>
             </View>
           </View>
 
