@@ -1,13 +1,14 @@
 // app/(tabs)/help.tsx — Help Screen
 import React, { useState } from 'react';
 import {
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Image,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 const faqs = [
@@ -61,14 +62,16 @@ export default function HelpScreen() {
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
       >
-        {/* App Banner */}
+      {/* App Banner */}
         <View style={styles.banner}>
-          <Text style={styles.bannerEmoji}>🍜</Text>
-          <View>
-            <Text style={styles.bannerTitle}>LepakLapar</Text>
-            <Text style={styles.bannerSub}>Lepak. Eat. Repeat.</Text>
-          </View>
-        </View>
+          <Image 
+            source={require('@/assets/images/mascot.png')} 
+            style={styles.mascotImg}
+            resizeMode="contain"
+          />
+          <Text style={styles.bannerTitle}>LepakLapar</Text>
+          <Text style={styles.bannerSub}>Lepak. Eat. Repeat.</Text>
+        </View>     
 
         {/* FAQ Section */}
         <Text style={styles.sectionTitle}>Frequently Asked Questions</Text>
@@ -123,29 +126,38 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 40,
   },
-  banner: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 16,
-    backgroundColor: '#FF6161',
-    borderRadius: 16,
-    padding: 20,
-    marginBottom: 16,
+banner: {
+    backgroundColor: '#FF5852',
+    borderRadius: 20,
+    paddingVertical: 7,
+    paddingHorizontal: 20,
+    alignItems: 'center', 
+    justifyContent: 'center',
+    marginBottom: 24,
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
   },
-  bannerEmoji: {
-    fontSize: 40,
+  mascotImg: {
+    width: 80,
+    height: 80,
+    marginBottom: 5,
   },
   bannerTitle: {
     color: '#fff',
-    fontSize: 22,
+    fontSize: 28,
     fontWeight: '800',
+    letterSpacing: 0.5,
+    marginBottom: 4,
   },
   bannerSub: {
-    color: '#ffcccc',
-    fontSize: 13,
-    marginTop: 2,
+    color: 'rgba(255, 255, 255, 0.9)',
+    fontSize: 16,
+    fontWeight: '500',
   },
-  // 
+
   sectionTitle: {
     fontSize: 16,
     fontWeight: '700',
