@@ -183,6 +183,14 @@ export default function FoodDetailScreen() {
             </View>
           </View>
 
+          <View style={styles.infoRow}>
+            <Text style={styles.infoIcon}>🌐</Text>
+            <View>
+              <Text style={styles.infoLabel}>Data Source</Text>
+              <Text style={styles.infoValue}>TheMealDB API (GET)</Text>
+            </View>
+          </View>
+
           <View style={styles.divider} />
 
           {/* Description */}
@@ -369,46 +377,6 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     marginBottom: 20,
   },
-  apiInfoBox: {
-    backgroundColor: '#1a1a1a',
-    borderRadius: 12,
-    padding: 14,
-    marginBottom: 16,
-    gap: 8,
-  },
-  apiInfoTitle: {
-    color: '#fff',
-    fontSize: 13,
-    fontWeight: '700',
-    marginBottom: 4,
-  },
-  apiRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
-  getBadge: {
-    backgroundColor: '#27AE60',
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 6,
-  },
-  postBadge: {
-    backgroundColor: '#2980B9',
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 6,
-  },
-  badgeText: {
-    color: '#fff',
-    fontSize: 10,
-    fontWeight: '800',
-    letterSpacing: 1,
-  },
-  apiText: {
-    color: '#aaa',
-    fontSize: 12,
-  },
   favBtn: {
     borderRadius: 14,
     paddingVertical: 16,
@@ -427,7 +395,7 @@ const styles = StyleSheet.create({
   },
   unavailNote: {
     textAlign: 'center',
-    fontSize: 15,
+    fontSize: 13,
     color: '#FF6161',
     marginTop: 4,
   },

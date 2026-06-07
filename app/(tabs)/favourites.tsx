@@ -1,6 +1,6 @@
 // app/(tabs)/favourites.tsx — Favourites Screen
 import { FoodItem, fallbackFoods } from '@/app/data';
-import { postFavourite, getMyFavourites, removeFavouriteFromDB, fetchMalaysianFood } from '@/app/services';
+import { getMyFavourites, postFavourite, removeFavouriteFromDB } from '@/app/services';
 import { useFocusEffect } from 'expo-router';
 import React, { useCallback, useState } from 'react';
 import {
@@ -16,7 +16,7 @@ import {
   View,
 } from 'react-native';
 
-export default function FavogituritesScreen() {
+export default function FavouritesScreen() {
   // ── State ────────────────────────────────────────────────────
   const [favourites, setFavourites] = useState<FoodItem[]>([]);
   const [isPosting, setIsPosting] = useState(false);
@@ -100,6 +100,22 @@ export default function FavogituritesScreen() {
     );
   };
 
+  // ── Add food to favourites ───────────────────────────────────
+  const handleAddDemo = () => {
+    const notAdded = fallbackFoods.filter(
+      (f) => !favourites.find((fav) => fav.id === f.id)
+    );
+    if (notAdded.length === 0) {
+      Alert.alert('All Added!', 'All food items are already in your favourites.');
+      return;
+    }
+    const toAdd = notAdded[0];
+    setFavourites((prev) => [...prev, toAdd]);
+
+    // Automatically POST to API when adding
+    handlePostFavourite(toAdd);
+  };
+
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar backgroundColor="#FF6161" barStyle="light-content" />
@@ -129,6 +145,17 @@ export default function FavogituritesScreen() {
           </Text>
         </View>
       )}
+
+      {/* Add Demo Button */}
+      <TouchableOpacity
+        style={styles.addBtn}
+        onPress={handleAddDemo}
+        disabled={isPosting}
+      >
+        <Text style={styles.addBtnText}>
+          ➕ Add Food & POST to API
+        </Text>
+      </TouchableOpacity>
 
       {/* Empty State */}
       {favourites.length === 0 ? (

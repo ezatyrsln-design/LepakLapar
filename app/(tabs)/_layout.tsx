@@ -3,6 +3,7 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform, Text } from 'react-native';
 
+
 // Tab bar icon using emoji
 const TabIcon = ({ emoji, focused }: { emoji: string; focused: boolean }) => (
   <Text style={{ fontSize: focused ? 26 : 22, opacity: focused ? 1 : 0.6 }}>

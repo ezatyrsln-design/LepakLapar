@@ -70,23 +70,6 @@ export default function HelpScreen() {
           </View>
         </View>
 
-        {/* API Info Box */}
-        <View style={styles.apiBox}>
-          <Text style={styles.apiTitle}>🌐 API Information</Text>
-          <View style={styles.apiRow}>
-            <View style={styles.methodBadge}>
-              <Text style={styles.methodText}>GET</Text>
-            </View>
-            <Text style={styles.apiUrl}>themealdb.com — Malaysian food data</Text>
-          </View>
-          <View style={styles.apiRow}>
-            <View style={[styles.methodBadge, styles.postBadge]}>
-              <Text style={styles.methodText}>POST</Text>
-            </View>
-            <Text style={styles.apiUrl}>jsonplaceholder.typicode.com/posts</Text>
-          </View>
-        </View>
-
         {/* FAQ Section */}
         <Text style={styles.sectionTitle}>Frequently Asked Questions</Text>
         {faqs.map((faq, i) => (
@@ -114,7 +97,7 @@ export default function HelpScreen() {
           <Text style={styles.contactText}>Faculty of Artificial Intelligence & Cyber Security</Text>
         </View>
 
-        <Text style={styles.version}>Version 1.0.0 • © 2025 LepakLapar</Text>
+        <Text style={styles.version}>Version 1.0.0 • © 2026 LepakLapar</Text>
       </ScrollView>
     </SafeAreaView>
   );
@@ -162,44 +145,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginTop: 2,
   },
-  apiBox: {
-    backgroundColor: '#1a1a1a',
-    borderRadius: 14,
-    padding: 16,
-    marginBottom: 20,
-    gap: 10,
-  },
-  apiTitle: {
-    color: '#fff',
-    fontSize: 14,
-    fontWeight: '700',
-    marginBottom: 4,
-  },
-  apiRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
-  methodBadge: {
-    backgroundColor: '#27AE60',
-    paddingHorizontal: 10,
-    paddingVertical: 3,
-    borderRadius: 6,
-  },
-  postBadge: {
-    backgroundColor: '#2980B9',
-  },
-  methodText: {
-    color: '#fff',
-    fontSize: 11,
-    fontWeight: '800',
-    letterSpacing: 1,
-  },
-  apiUrl: {
-    color: '#aaa',
-    fontSize: 12,
-    flex: 1,
-  },
+  // 
   sectionTitle: {
     fontSize: 16,
     fontWeight: '700',
