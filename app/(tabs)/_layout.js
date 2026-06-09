@@ -1,11 +1,9 @@
-// app/(tabs)/_layout.tsx — Tab Navigation Layout
+// app/(tabs)/_layout.js — Tab Navigation Layout
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform, Text } from 'react-native';
 
-
-// Tab bar icon using emoji
-const TabIcon = ({ emoji, focused }: { emoji: string; focused: boolean }) => (
+const TabIcon = ({ emoji, focused }) => (
   <Text style={{ fontSize: focused ? 26 : 22, opacity: focused ? 1 : 0.6 }}>
     {emoji}
   </Text>
@@ -38,47 +36,32 @@ export default function TabLayout() {
         },
       }}
     >
-      {/* Home Tab */}
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ focused }) => (
-            <TabIcon emoji="🏠" focused={focused} />
-          ),
+          tabBarIcon: ({ focused }) => <TabIcon emoji="🏠" focused={focused} />,
         }}
       />
-
-      {/* Search Tab */}
       <Tabs.Screen
         name="explore"
         options={{
           title: 'Search',
-          tabBarIcon: ({ focused }) => (
-            <TabIcon emoji="🔍" focused={focused} />
-          ),
+          tabBarIcon: ({ focused }) => <TabIcon emoji="🔍" focused={focused} />,
         }}
       />
-
-      {/* Favourites Tab */}
       <Tabs.Screen
         name="favourites"
         options={{
           title: 'Favourites',
-          tabBarIcon: ({ focused }) => (
-            <TabIcon emoji="❤️" focused={focused} />
-          ),
+          tabBarIcon: ({ focused }) => <TabIcon emoji="❤️" focused={focused} />,
         }}
       />
-
-      {/* Help Tab */}
       <Tabs.Screen
         name="help"
         options={{
           title: 'Help',
-          tabBarIcon: ({ focused }) => (
-            <TabIcon emoji="❓" focused={focused} />
-          ),
+          tabBarIcon: ({ focused }) => <TabIcon emoji="❓" focused={focused} />,
         }}
       />
     </Tabs>
