@@ -1,6 +1,7 @@
 // app/(tabs)/help.js — Help Screen
 import { useState } from 'react';
 import {
+  Image,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -33,11 +34,13 @@ export default function HelpScreen() {
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
 
         <View style={styles.banner}>
-          <Text style={styles.bannerEmoji}>🍜</Text>
-          <View>
-            <Text style={styles.bannerTitle}>LepakLapar</Text>
-            <Text style={styles.bannerSub}>Lepak. Eat. Repeat.</Text>
-          </View>
+          <Image 
+            source={require('@/assets/images/mascot.png')} 
+            style={styles.mascotImg}
+            resizeMode="contain"
+          />
+          <Text style={styles.bannerTitle}>LepakLapar</Text>
+          <Text style={styles.bannerSub}>Lepak. Eat. Repeat.</Text>  
         </View>
 
         
@@ -80,10 +83,11 @@ const styles = StyleSheet.create({
   header: { backgroundColor: '#FF6161', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 20 },
   title: { color: '#fff', fontSize: 24, fontWeight: '800' },
   content: { padding: 16, paddingBottom: 40 },
-  banner: { flexDirection: 'row', alignItems: 'center', gap: 16, backgroundColor: '#FF6161', borderRadius: 16, padding: 20, marginBottom: 16 },
+  banner: { backgroundColor: '#FF5852', borderRadius: 20, paddingVertical: 7, paddingHorizontal: 20, alignItems: 'center', justifyContent: 'center', marginBottom: 24, padding: 20, marginBottom: 16, elevation: 4, shadowColor: '#000',shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 6 },
   bannerEmoji: { fontSize: 40 },
-  bannerTitle: { color: '#fff', fontSize: 22, fontWeight: '800' },
-  bannerSub: { color: '#ffcccc', fontSize: 13, marginTop: 2 },
+  mascotImg: { width: 80, height: 80, marginBottom: 5 },
+  bannerTitle: { color: '#fff', fontSize: 28, fontWeight: '800', letterSpacing: 0.5, marginBottom: 4 },
+  bannerSub: { color: '#ffcccc', fontSize: 13, marginTop: 2, color: 'rgba(255, 255, 255, 0.9)', fontSize: 16, fontWeight: '500' },
   apiBox: { backgroundColor: '#1a1a1a', borderRadius: 14, padding: 16, marginBottom: 20, gap: 10 },
   apiTitle: { color: '#fff', fontSize: 14, fontWeight: '700', marginBottom: 4 },
   apiRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
@@ -95,7 +99,7 @@ const styles = StyleSheet.create({
   faqItem: { backgroundColor: '#fff', borderRadius: 12, padding: 16, marginBottom: 10, elevation: 2, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.08, shadowRadius: 4 },
   faqHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   faqQ: { fontSize: 14, fontWeight: '600', color: '#1a1a1a', flex: 1, marginRight: 10 },
-  faqArrow: { color: '#FF6161', fontSize: 12, fontWeight: '700' },
+  faqArrow: { color: '#FF5852', fontSize: 12, fontWeight: '700' },
   faqA: { fontSize: 13, color: '#666', marginTop: 10, lineHeight: 20 },
   contactBox: { backgroundColor: '#FFF0F0', borderRadius: 12, padding: 16, marginTop: 10, borderWidth: 1, borderColor: '#ffcccc', gap: 4 },
   contactTitle: { fontSize: 15, fontWeight: '700', color: '#FF6161', marginBottom: 6 },

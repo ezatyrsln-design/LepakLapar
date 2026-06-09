@@ -2,15 +2,16 @@
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import {
-    ActivityIndicator,
-    FlatList,
-    SafeAreaView,
-    SectionList,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  FlatList,
+  Image,
+  SafeAreaView,
+  SectionList,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import CategoryPill from '../../components/CategoryPill';
 import FoodCard from '../../components/FoodCard';
@@ -179,6 +180,14 @@ export default function HomeScreen() {
           <Text style={styles.headerTitle}>LepakLapar</Text>
         </View>
 
+        <View style={styles.headerIcon}>
+          <Image 
+            source={require('@/assets/images/mascot.png')} 
+            style={styles.mascotImg}
+            resizeMode="cover"
+          />
+        </View>
+        
       </View>
       <TouchableOpacity style={styles.searchBar} onPress={() => router.push('/(tabs)/explore')} activeOpacity={0.8}>
         <Text style={styles.searchIcon}>🔍</Text>
@@ -228,19 +237,20 @@ const EmptyState = () => (
 );
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: '#FFF8F5' },
+  safe: { flex: 100, backgroundColor: '#FFF8F5' },
   loadingContainer: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFF8F5', gap: 12 },
   loadingText: { fontSize: 16, fontWeight: '600', color: '#333', marginTop: 12 },
   loadingSubText: { fontSize: 13, color: '#999' },
-  header: { backgroundColor: '#FF6161', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  header: { backgroundColor: '#FF5852', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   greeting: { color: '#ffcccc', fontSize: 13 },
   headerTitle: { color: '#fff', fontSize: 28, fontWeight: '800', letterSpacing: 0.5 },
-  headerIcon: { width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.2)', alignItems: 'center', justifyContent: 'center' },
+  headerIcon: { width: 64, height: 64, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.2)', alignItems: 'center', justifyContent: 'center' },
+  mascotImg: { width: '100%', height: '100%'},
   headerEmoji: { fontSize: 20 },
   searchBar: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', marginHorizontal: 16, marginTop: -16, borderRadius: 14, paddingHorizontal: 16, paddingVertical: 14, elevation: 4, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 6, gap: 10 },
   searchIcon: { fontSize: 16 },
   searchPlaceholder: { color: '#aaa', fontSize: 14, flex: 1 },
-  sectionRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16, marginTop: 20, marginBottom: 10 },
+  sectionRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16, marginBottom: 10 },
   sectionTitle: { fontSize: 16, fontWeight: '700', color: '#1a1a1a' },
   seeAll: { fontSize: 13, color: '#FF6161', fontWeight: '600' },
   catList: { paddingHorizontal: 16, gap: 8 },
