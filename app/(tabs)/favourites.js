@@ -1,7 +1,7 @@
 // app/(tabs)/favourites.js — Favourites Screen
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { getMyFavourites, removeFavouriteFromDB } from '../app/services';
+import { getMyFavourites, removeFavouriteFromDB } from '../services/index.js';
 import {
   ActivityIndicator,
   Alert,

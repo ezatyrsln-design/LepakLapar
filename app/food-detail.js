@@ -1,5 +1,5 @@
 // app/food-detail.js — Food Detail Screen
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter, useFocusEffect } from 'expo-router';
 import { useState, useCallback } from 'react';
 import { postFavourite, getMyFavourites, removeFavouriteFromDB } from '../app/services/index.js';
 import {

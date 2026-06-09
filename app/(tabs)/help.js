@@ -12,8 +12,6 @@ import {
 
 const faqs = [
   { q: 'How do I save a favourite food?', a: 'Tap the ❤️ icon inside the food detail page. The food will be saved to your Favourites list.' },
-  { q: 'How does the GET API work?', a: 'The app fetches real Malaysian food data from TheMealDB API (https://www.themealdb.com) when it loads. If the API fails, fallback local data is used automatically.' },
-  { q: 'How does the POST API work?', a: 'When you tap "Add Food & POST to API" or the 📤 button in Favourites, the app sends food data to jsonplaceholder.typicode.com using a POST request. A success alert shows the API response ID.' },
   { q: 'How do I search for food?', a: 'Tap the Search tab at the bottom, then type the food name, category or location. Results appear automatically as you type.' },
   { q: 'Are the prices accurate?', a: 'Prices shown are estimates based on typical warung prices near UTeM. Actual prices may vary.' },
   { q: 'What does "Not Available" mean?', a: 'It means the food item is currently not being sold. Please check back later.' },

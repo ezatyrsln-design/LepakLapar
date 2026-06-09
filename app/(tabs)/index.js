@@ -178,9 +178,7 @@ export default function HomeScreen() {
           <Text style={styles.greeting}>Welcome back! 👋</Text>
           <Text style={styles.headerTitle}>LepakLapar</Text>
         </View>
-        <View style={styles.headerIcon}>
-          <Text style={styles.headerEmoji}>🔔</Text>
-        </View>
+
       </View>
       <TouchableOpacity style={styles.searchBar} onPress={() => router.push('/(tabs)/explore')} activeOpacity={0.8}>
         <Text style={styles.searchIcon}>🔍</Text>
