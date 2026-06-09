@@ -1,6 +1,7 @@
 // app/food-detail.js — Food Detail Screen
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useState } from 'react';
+import { useLocalSearchParams, useRouter, useFocusEffect } from 'expo-router';
+import { useState, useCallback } from 'react';
+import { postFavourite, getMyFavourites, removeFavouriteFromDB } from '../app/services/index.js';
 import {
   ActivityIndicator,
   Alert,
@@ -24,33 +25,6 @@ const CATEGORY_COLORS = {
   Others:  '#C0392B',
 };
 
-const POST_URL = 'https://jsonplaceholder.typicode.com/posts';
-
-const postFavourite = async (food) => {
-  try {
-    const response = await fetch(POST_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        title: food.name,
-        body: food.description,
-        foodId: food.id,
-        category: food.category,
-        price: food.price,
-        rating: food.rating,
-        location: food.location,
-        userId: 1,
-      }),
-    });
-    const result = await response.json();
-    console.log('POST Success:', result);
-    return result;
-  } catch (error) {
-    console.log('POST Error:', error);
-    return null;
-  }
-};
-
 export default function FoodDetailScreen() {
   const { food, isFavourite: isFavParam } = useLocalSearchParams();
   const router = useRouter();
@@ -60,6 +34,18 @@ export default function FoodDetailScreen() {
   const [isPosting, setIsPosting] = useState(false);
 
   const catColor = CATEGORY_COLORS[item.category] || '#FF6161';
+
+  // ── VERIFY STATUS — Check the DB every time the page opens
+  useFocusEffect(
+    useCallback(() => {
+      const verifyFavouriteStatus = async () => {
+        const currentFavs = await getMyFavourites();
+        const isActuallySaved = currentFavs.some((fav) => fav.id === item.id);
+        setIsFavourite(isActuallySaved);
+      };
+      verifyFavouriteStatus();
+    }, [item.id])
+  );
 
   const handleFavourite = async () => {
     if (!item.available) {
@@ -77,7 +63,7 @@ export default function FoodDetailScreen() {
         `Remove "${item.name}" from your favourites?`,
         [
           { text: 'Cancel', style: 'cancel' },
-          { text: 'Remove', style: 'destructive', onPress: () => setIsFavourite(false) },
+          { text: 'Remove', style: 'destructive', onPress: () => {setIsFavourite(false); removeFavouriteFromDB(item.id) }},
         ]
       );
     } else {

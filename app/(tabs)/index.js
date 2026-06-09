@@ -179,6 +179,7 @@ export default function HomeScreen() {
           <Text style={styles.greeting}>Welcome back! 👋</Text>
           <Text style={styles.headerTitle}>LepakLapar</Text>
         </View>
+
         <View style={styles.headerIcon}>
           <Image 
             source={require('@/assets/images/mascot.png')} 

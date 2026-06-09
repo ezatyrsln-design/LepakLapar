@@ -31,10 +31,6 @@ const FoodCard = ({ item, isFavourite, onPress, onToggleFavourite }) => {
           </View>
         )}
 
-        <TouchableOpacity style={styles.heartBtn} onPress={onToggleFavourite}>
-          <Text style={styles.heart}>{isFavourite ? '❤️' : '🤍'}</Text>
-        </TouchableOpacity>
-
         <View style={[styles.catBadge, { backgroundColor: catColor }]}>
           <Text style={styles.catBadgeText}>{item.category}</Text>
         </View>
