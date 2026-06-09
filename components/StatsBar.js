@@ -1,13 +1,8 @@
-// components/StatsBar.tsx
+// components/StatsBar.js
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-interface Props {
-  count: number;
-  category: string;
-}
-
-const StatsBar: React.FC<Props> = ({ count, category }) => (
+const StatsBar = ({ count, category }) => (
   <View style={styles.container}>
     <Text style={styles.text}>
       {category === 'All'
@@ -26,16 +21,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 6,
   },
-  text: {
-    fontSize: 12,
-    color: '#888',
-    fontStyle: 'italic',
-  },
-  pin: {
-    fontSize: 12,
-    color: '#FF6161',
-    fontWeight: '600',
-  },
+  text: { fontSize: 12, color: '#888', fontStyle: 'italic' },
+  pin: { fontSize: 12, color: '#FF6161', fontWeight: '600' },
 });
 
 export default StatsBar;
