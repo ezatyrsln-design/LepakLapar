@@ -1,14 +1,8 @@
-// components/CategoryPill.tsx
+// components/CategoryPill.js
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-interface Props {
-  label: string;
-  selected: boolean;
-  onPress: () => void;
-}
-
-const ICONS: Record<string, string> = {
+const ICONS = {
   All:     '🍽️',
   Rice:    '🍚',
   Noodles: '🍜',
@@ -18,7 +12,7 @@ const ICONS: Record<string, string> = {
   Others:  '🥘',
 };
 
-const CategoryPill: React.FC<Props> = ({ label, selected, onPress }) => (
+const CategoryPill = ({ label, selected, onPress }) => (
   <TouchableOpacity
     style={[styles.pill, selected && styles.pillSelected]}
     onPress={onPress}
@@ -41,21 +35,10 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: '#e0e0e0',
   },
-  pillSelected: {
-    backgroundColor: '#FF6161',
-    borderColor: '#FF6161',
-  },
-  icon: {
-    fontSize: 14,
-  },
-  label: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: '#555',
-  },
-  labelSelected: {
-    color: '#fff',
-  },
+  pillSelected: { backgroundColor: '#FF6161', borderColor: '#FF6161' },
+  icon: { fontSize: 14 },
+  label: { fontSize: 13, fontWeight: '600', color: '#555' },
+  labelSelected: { color: '#fff' },
 });
 
 export default CategoryPill;

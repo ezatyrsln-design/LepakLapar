@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+, "app/(tabs)/card-detail.js", "hooks/use-color-scheme.js", "constants/theme.js", "components/CategoryPill.js", "components/StatsBar.js", "components/FoodCard.js", "app/food-detail.js", "app/_layout.js", "app/services/index.js", "app/data/index.js", "app/(tabs)/index.js", "app/(tabs)/help.js", "app/(tabs)/favourites.js", "app/(tabs)/explore.js", "app/(tabs)/_layout.js"  ]
 }
