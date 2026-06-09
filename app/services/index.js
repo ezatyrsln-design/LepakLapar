@@ -1,8 +1,22 @@
 // services/index.js
 // API service file — contains GET and POST methods
-export default function ServicesIndex() { return null; }
+
 const MEALDB_URL = 'https://www.themealdb.com/api/json/v1/1';
 const POST_URL = 'https://jsonplaceholder.typicode.com/posts';
+
+// DATABASE
+let myFavouritesDB = [];
+export const getMyFavourites = async () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve([...myFavouritesDB]); 
+    }, 500);
+  });
+};
+
+export const removeFavouriteFromDB = (id) => {
+  myFavouritesDB = myFavouritesDB.filter((item) => item.id !== id);
+};
 
 // GET METHOD — Fetch Malaysian food from API
 export const fetchMalaysianFood = async () => {
@@ -65,6 +79,13 @@ export const postFavourite = async (food) => {
     });
 
     const result = await response.json();
+
+    // Save to our fake database
+    const alreadySaved = myFavouritesDB.find((item) => item.id === food.id);
+    if (!alreadySaved) {
+      myFavouritesDB.push(food);
+    }
+
     console.log('POST Success:', result);
     return result;
   } catch (error) {
