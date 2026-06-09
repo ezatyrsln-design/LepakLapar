@@ -77,7 +77,7 @@ export default function FavouritesScreen() {
         <View style={styles.empty}>
           <Text style={styles.emptyEmoji}>💔</Text>
           <Text style={styles.emptyTitle}>No Favourites Yet</Text>
-          <Text style={styles.emptySub}>Tap "Add Food & POST to API" to add!</Text>
+          <Text style={styles.emptySub}>Go back and add items to see them here!</Text>
         </View>
       ) : (
         <FlatList
