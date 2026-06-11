@@ -160,6 +160,12 @@ export default function SearchScreen() {
           <ActivityIndicator size="large" color="#FF6161" />
           <Text style={styles.loadingText}>Loading food data...</Text>
         </View>
+      ): query.length > 30 ? (
+        <View style={styles.center}>
+          <Text style={styles.hintEmoji}>🛑</Text>
+          <Text style={styles.hintText}>Search term is too long</Text>
+          <Text style={styles.hintSub}>Please keep it under 30 characters.</Text>
+        </View>
       ) : query.trim().length === 0 && query.length > 0 ? (
         <View style={styles.center}>
           <Text style={styles.hintEmoji}>⚠️</Text>
