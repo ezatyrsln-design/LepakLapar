@@ -189,10 +189,7 @@ export default function HomeScreen() {
         </View>
         
       </View>
-      <TouchableOpacity style={styles.searchBar} onPress={() => router.push('/(tabs)/explore')} activeOpacity={0.8}>
-        <Text style={styles.searchIcon}>🔍</Text>
-        <Text style={styles.searchPlaceholder}>Search for food...</Text>
-      </TouchableOpacity>
+
       {viewMode === 'section' ? (
         <SectionList
           sections={sections}
